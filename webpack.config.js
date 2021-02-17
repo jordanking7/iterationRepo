@@ -30,7 +30,6 @@ module.exports = {
       ]
     },
     devServer: {
-      
        publicPath: '/build',
        proxy: {
            '/': 'http://localhost:3000'
