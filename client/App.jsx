@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+<<<<<<< main
 import Donation from './components/Donation.jsx'
+=======
+// import { Counter } from './components/hook.jsx'
+>>>>>>> main
 
 
 class App extends Component{
@@ -36,8 +40,11 @@ render() {
                     <button id="donateHome"> Donate </button>
                     <button id="applyHome">Apply</button>  
                 </div>
+<<<<<<< main
                 <Donation />
 
+=======
+>>>>>>> main
         </div>
     )
 }
