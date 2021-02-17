@@ -1,8 +1,8 @@
 const db = require("../models/databaseModel");
 
-const dataBaseController = {};
+const UpdateController = {};
 
-dataBaseController.makeDonation = (req, res, next) => {
+UpdateController.makeDonation = (req, res, next) => {
   // destructor request body
   const { donations, members } = req.body;
   // test if request would like to add user
@@ -18,4 +18,4 @@ dataBaseController.makeDonation = (req, res, next) => {
 
 }
 
-module.exports = dataBaseController;
+module.exports = UpdateController;
