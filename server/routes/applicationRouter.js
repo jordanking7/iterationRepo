@@ -3,7 +3,7 @@ const applicationRouter = express.Router();
 const makeDonation = require('../controllers/CreateController.js')
 
 
-applicationRouter.post("/createApplicationRequest", CreateController.makeDonation, (req, res) => {
+applicationRouter.post("/createApplicationRequest", makeDonation, (req, res) => {
   res.sendStatus(200);
 });
 

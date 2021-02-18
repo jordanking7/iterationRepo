@@ -4,23 +4,22 @@ const path = require('path');
 const PORT = 3000;
 const app = express();
 // const GetController = require('./controllers/GetController.js');
+const donationRouter = require('./routes/donationRouter.js');
 const { getDonations } = require('./controllers/GetController.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
+app.use('/donation', donationRouter);
+
+app.get("/getDonations", getDonations, (req, res) => {
+  res.status(200).json(res.locals.donations);
+});
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../index.html"));
 });
-
-app.get("/getDonations",
-  getDonations,
-  (req, res) => {
-    res.status(200).json(res.locals.donations);
-  })
-
 
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
