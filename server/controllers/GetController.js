@@ -21,7 +21,7 @@ class GetControllerBlueprint {
     next();
   };
 }
-
+ 
 const GetController = new GetControllerBlueprint();
 
 const getDonations = GetController.getDonations;

@@ -1,6 +1,6 @@
 const db = require("../models/databaseModel");
 const { hashCreatePassword, hashCreateCreditCard } = require('./queryFunctions/HashesCreate.js');
-
+ 
 class CreateControllerBlueprint {
   async makeDonation(req, res, next) {
     // destructor request body 
