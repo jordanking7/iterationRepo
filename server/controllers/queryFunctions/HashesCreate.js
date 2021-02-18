@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-
+ 
 const saltRounds = 10;
 class HashesCreateBlueprint {
   async hashCreatePassword(password) {
