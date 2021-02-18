@@ -5,9 +5,9 @@ const PORT = 3000;
 const app = express();
 // const GetController = require('./controllers/GetController.js');
 const donationRouter = require('./routes/donationRouter.js');
-const editAccountRouter = require('./routes/editAccountRouter.js');
-const loginRouter = require('./routes/loginRouter.js');
-const applicationRouter = require('./routes/applicationRouter.js');
+// const editAccountRouter = require('./routes/editAccountRouter.js');
+// const loginRouter = require('./routes/loginRouter.js');
+// const applicationRouter = require('./routes/applicationRouter.js');
 const { getDonations } = require('./controllers/GetController.js');
 
 app.use(express.json());
@@ -15,9 +15,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 app.use('/donation', donationRouter);
-app.use('/editaccount', editAccountRouter);
-app.use('/login', loginRouter);
-app.use('/application', applicationRouter);
+// app.use('/editaccount', editAccountRouter);
+// app.use('/login', loginRouter);
+// app.use('/application', applicationRouter);
 
 app.get("/getDonations", getDonations, (req, res) => {
   res.status(200).json(res.locals.donations);
