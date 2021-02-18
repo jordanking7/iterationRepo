@@ -36,19 +36,12 @@ class App extends Component {
                     <button id="donateHome"> Donate </button>
                     <button id="applyHome">Apply</button>
                 </div>
-<<<<<<< HEAD
-            <Donation />
-        </div>
-    )
-  }
-=======
                 <Donation />
 
             </div>
         )
     }
 
->>>>>>> 1a840687aff868e88e9f493cf63592ac9bc73e6b
 };
 
 export default App;
