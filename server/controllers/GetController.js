@@ -1,7 +1,7 @@
 const db = require("../models/databaseModel");
 
 class GetControllerBlueprint {
-  async getDonations(err, req, res, next) {
+  async getDonations(req, res, next) { //err is only included when our middleware is an error handling middleware and will ONLY run if an error is encountered. Catch blocks introduce a new error object.
     try {
       const allDonations = 'SELECT sum(amount) FROM donations';
       const result = await db.query(allDonations); //yields a number
@@ -17,7 +17,7 @@ class GetControllerBlueprint {
     // })
     // .catch((err) => {
     //   next(err);
-    // });
+    // }); 
     next();
   };
 }

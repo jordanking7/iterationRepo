@@ -1,7 +1,7 @@
 CREATE TABLE users (
   _id SERIAL PRIMARY KEY,
   user_name VARCHAR(80) UNIQUE not null,
-  password VARCHAR(80 not null)
+  password VARCHAR(80) not null
 );
 
 CREATE TABLE donations (
