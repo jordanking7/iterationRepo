@@ -1,118 +1,107 @@
-import React from 'react';
-import { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import './stylesheets/styles.css';
+import React, { useState } from 'react';
+// import { Switch, Route } from 'react-router-dom';
+import '../styles.css';
+import { makeStyles } from '@material-ui/core/styles'
+/*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*/
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button'
+/*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*//*Material UI*/
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '50ch',
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      border: "1px solid black",
+      borderRadius: '5px',
+      backgroundColor: "white"
+    },
+  },
+}));
 
 
-class Donations extends Component {
-    constructor() {
-        super();
-        this.state = {
-                nameInput : '', 
-                donationAmount : '', 
-                creditCard : '', 
-                phone : '', 
-                date: '', 
-                email: '',
-                username: '',
-                password: '',
-                totalRaised: ''
-            }
-            this.handleClick = this.handleClick.bind(this);
-        }
 
-    handleClick(event) {
-        const donations = { nameInput : this.state.nameInput,
-                            //nameInput : document.getElementById("nameInput").value,
-                            donationAmount : this.state.donationAmount,
-                            creditCard : this.state.creditCard, 
-                            phone : this.state.phone, 
-                            date : this.state.date, 
-                            email: this.state.emai
-                          };
-        const members = { username : this.state.username , password : this.state.password };
+export default function Donation (props) {
+    const classes = useStyles();
+    const [ name, setName ] = useState('');
+    const [ donationAmount, setDonationAmount ] = useState('');
+    const [ creditCard , setCreditCard  ] = useState('');
+    const [ phone, setPhone ] = useState('');
+    const [ date, setDate ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ username, setUsername] = useState('');
+    const [ password, setPassword ] = useState('');
 
-        preventDefault(event);
-        fetch('/donate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({donations, members})
-        })
+         
 
+    function inputSubmitted(e){
+      setName(e.target.value);//Kate
+      setDonationAmount(e.target.value);//$10
+      setCreditCard(e.target.value);
+      setPhone(e.target.value);
+      setDate(e.target.value);
+      setEmail(e.target.value);
+      setUsername(e.target.value);
+      setPassword(e.target.value);
+      
+      const donation = { 'name': name,
+                        'donationAmount': donationAmount,
+                        'creditCard': creditCard,
+                        'phone': phone,
+                        'date': date,
+                        'email': email,
+                        }
+      const members = {
+                        'username': username,
+                        'password': password
+      }      
+      console.log('donationOBJ', donation)            
+      console.log('membersOBJ', members)            
     }
-    render() {
+   
+    // handleClick(event) {
+    //     const donations = { name : this.state.name,
+    //                         //name : document.getElementById("name").value,
+    //                         donationAmount : this.state.donationAmount,
+    //                         creditCard : this.state.creditCard, 
+    //                         phone : this.state.phone, 
+    //                         date : this.state.date, 
+    //                         email: this.state.email
+    //                       };
+    //     const members = { username : this.state.username , password : this.state.password };
 
+    //     preventDefault(event);
+    //     fetch('/donate', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({donations, members})
+    //     })
+
+    // }
+      const resultArr = [];
+      const formItems = ["name", "donationAmount", "creditCard", "phone", "date", "email", "username", "password"];
+      const formFunc =  [setName, setDonationAmount, setCreditCard, setPhone, setDate, setEmail, setUsername, setPassword]
+      // formItems.forEach(name => resultArr.push( <TextField id="outlined-basic" label={name} onChange={event => "set"+{name}(event.target.value)} variant="outlined"/>))
+      for (let i = 0; i < formItems.length; i++){
+        resultArr.push( <TextField id="outlined-basic" label={formItems[i]} onChange={event => formFunc[i](event.target.value)} variant="outlined"/>)
+      }
         return (
-            <div>
-                <form>
-                    <input type="text" id="nameInput" onChange={(evt) => {
-                      this.setState({
-                        ...this.state,
-                        nameInput: evt.target.value  
-                      });
-                    }}>name</input>
+          <section>
+      
+            <form className={classes.root} noValidate autoComplete="off" >
+              {resultArr}
+              <Button variant="contained" color="primary" disableElevation style={{backgroundColor:"blue"}} onClick={inputSubmitted} >submit</Button>
+            </form>
             
-                    <input type="text" id="donationAmount" onChange={(evt) => {
-                  this.setState({
-                      ...this.state,
-                      donationAmount: evt.target.value
-                      
-                });
-            }}> donation amount </input>
-            
-                    <input type="text" id="creditCard" onChange={(evt) => {
-                  this.setState({
-                     ...this.state,
-                     creditCard: evt.target.value
-                });
-            }}> creditcard </input>
-            
-                    <input type="text" id="phone" onChange={(evt) => {
-                  this.setState({
-                    ...this.state,
-                    phone : evt.target.value
-                });
-            }} > phone number </input>
-                      
-                    <input type="text" id="date" onChange={(evt) => {
-                  this.setState({
-                    ...this.state,
-                    nameInput: evt.target.value
-                });
-            }}> date </input>
-                      
-                    <input type="text" id="email" onChange={(evt) => {
-                  this.setState({
-                    ...this.state,
-                    email: evt.target.value
-                });
-            }}> email </input>
-                      
-                    <input type="checkbox"onChange="">Would you like to become a member?</input>
-
-
-                    <input type="text" id="username" onChange={(evt) => {
-                  this.setState({
-                    ...this.state,
-                    username: evt.target.value
-                });
-            }}> username </input>
-                      
-                    <input type="text" id="password" onChange={(evt) => {
-                  this.setState({
-                    ...this.state,
-                    password: evt.target.value
-                });
-            }}> password </input>
-                      
-                    <button onClick={this.handleClick}>Submit</button>
-                </form>
-            </div>
+          </section>
+             
+                
 
         )
-    }
+    
 };
 
-export default Donations
